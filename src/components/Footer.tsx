@@ -38,7 +38,7 @@ export function Footer() {
           {/* Logo and Description */}
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center">
-              <img src="./public/images/MYlogo.png" alt="HembaLearn Logo" className="h-8 w-auto mr-2" />
+              <img src="/images/MYlogo.png" alt="HembaLearn Logo" className="h-8 w-auto mr-2" />
               <span className="text-2xl font-bold text-white">HembaLearn</span>
             </Link>
             <p className="mt-4 text-gray-400">

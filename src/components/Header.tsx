@@ -32,7 +32,7 @@ export default function Header() {
                 <Menu className="h-6 w-6" />
               </button>
               <Link to="/" className="flex items-center gap-2">
-              <img src="./public/images/MYlogo.png" alt="HembaLearn Logo" className="h-8 w-8" />
+              <img src="/images/MYlogo.png" alt="HembaLearn Logo" className="h-8 w-8" />
                 <span className="text-2xl font-bold bg-gradient-to-r from-blue-800 to-blue-400 bg-clip-text text-transparent">
                   Hemba<span className="text-sky-600">Learn</span>
                 </span>
