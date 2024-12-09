@@ -145,9 +145,9 @@ const ContactPage: React.FC = () => {
             position: 'relative',
             backgroundColor: 'primary.main',
             color: 'white',
-            py: { xs: 100, md: 45 },
-            height: { xs: '100vh', md: '60vh' },
-            minHeight: 400,
+            py: { xs: 4, md: 45 },
+            height: { xs: 'auto', md: '60vh' },
+            minHeight: { xs: 400, md: 400 },
             display: 'flex',
             alignItems: 'center',
             textAlign: 'center',
@@ -168,29 +168,31 @@ const ContactPage: React.FC = () => {
           />
 
           {/* Content */}
-          <Container maxWidth="md" sx={{ position: 'relative', zIndex: 2 }}>
+          <Container maxWidth="md" sx={{ position: 'relative', zIndex: 2, py: { xs: 4, md: 0 } }}>
             <Typography 
-              variant="h3" 
+              variant="h4" 
               component="h1" 
               gutterBottom 
               sx={{ 
                 fontWeight: 'bold', 
                 mb: 2,
                 color: 'white',
-                textShadow: '1px 1px 2px rgba(0,0,0,0.2)'
+                textShadow: '1px 1px 2px rgba(0,0,0,0.2)',
+                fontSize: { xs: '1.8rem', md: 'h3.fontSize' }
               }}
             >
               We're Here to Help
             </Typography>
             
             <Typography 
-              variant="h6" 
+              variant="body1" 
               component="p" 
               sx={{ 
                 mb: 4, 
                 color: 'rgba(255,255,255,0.9)',
                 maxWidth: 600,
-                mx: 'auto'
+                mx: 'auto',
+                fontSize: { xs: '0.9rem', md: 'h6.fontSize' }
               }}
             >
               Have a question, suggestion, or need support? Our dedicated team is ready to assist you. 
@@ -201,8 +203,8 @@ const ContactPage: React.FC = () => {
               sx={{ 
                 display: 'flex', 
                 justifyContent: 'center', 
-                gap: 2,
-                flexWrap: 'wrap'
+                gap: { xs: 1, md: 2 },
+                flexDirection: { xs: 'column', sm: 'row' }
               }}
             >
               <Button
@@ -210,9 +212,10 @@ const ContactPage: React.FC = () => {
                 color="secondary"
                 startIcon={<SupportAgentIcon />}
                 sx={{ 
-                  px: 3, 
-                  py: 1.5,
-                  boxShadow: 3
+                  px: { xs: 2, md: 3 }, 
+                  py: { xs: 1, md: 1.5 },
+                  boxShadow: 3,
+                  width: { xs: '100%', sm: 'auto' }
                 }}
               >
                 Support Center
@@ -222,10 +225,12 @@ const ContactPage: React.FC = () => {
                 color="inherit"
                 startIcon={<ChatIcon />}
                 sx={{ 
-                  px: 3, 
-                  py: 1.5,
+                  px: { xs: 2, md: 3 }, 
+                  py: { xs: 1, md: 1.5 },
                   color: 'white',
                   borderColor: 'white',
+                  mt: { xs: 1, sm: 0 },
+                  width: { xs: '100%', sm: 'auto' },
                   '&:hover': {
                     backgroundColor: 'rgba(255,255,255,0.1)'
                   }
@@ -253,20 +258,20 @@ const ContactPage: React.FC = () => {
 
         {/* Main Contact Content */}
         <section>
-         <Container maxWidth="lg" sx={{ py: 4, mt: 4, mb: 4 }}>
-          <Grid container spacing={4}>
+         <Container maxWidth="lg" sx={{ py: { xs: 2, md: 4 }, mt: { xs: 2, md: 4 }, mb: { xs: 2, md: 4 } }}>
+          <Grid container spacing={{ xs: 2, md: 4 }}>
             {/* Contact Form */}
             <Grid item xs={12} md={7}>
-              <Paper elevation={3} sx={{ p: 4, height: '100%' }}>
-                <Typography variant="h4" component="h2" gutterBottom align="center">
+              <Paper elevation={3} sx={{ p: { xs: 2, md: 4 }, height: '100%' }}>
+                <Typography variant="h5" component="h2" gutterBottom align="center">
                   Send Us a Message
                 </Typography>
-                <Typography variant="subtitle1" align="center" sx={{ mb: 3 }}>
+                <Typography variant="subtitle2" align="center" sx={{ mb: 3, fontSize: { xs: '0.8rem', md: 'subtitle1.fontSize' } }}>
                   Fill out the form below, and we'll get back to you soon.
                 </Typography>
                 
                 <form onSubmit={handleSubmit(onSubmit)} noValidate>
-                  <Grid container spacing={3}>
+                  <Grid container spacing={{ xs: 2, md: 3 }}>
                     <Grid item xs={12} sm={6}>
                       <Controller
                         name="name"
@@ -279,6 +284,7 @@ const ContactPage: React.FC = () => {
                             label="Name"
                             variant="outlined"
                             required
+                            size="small"
                             error={!!errors.name}
                             helperText={errors.name?.message}
                           />
@@ -299,6 +305,7 @@ const ContactPage: React.FC = () => {
                             type="email"
                             variant="outlined"
                             required
+                            size="small"
                             error={!!errors.email}
                             helperText={errors.email?.message}
                           />
@@ -318,6 +325,7 @@ const ContactPage: React.FC = () => {
                             label="Subject"
                             variant="outlined"
                             required
+                            size="small"
                             error={!!errors.subject}
                             helperText={errors.subject?.message}
                           />
@@ -355,6 +363,10 @@ const ContactPage: React.FC = () => {
                         size="large"
                         disabled={isSubmitting}
                         startIcon={<SendIcon />}
+                        sx={{ 
+                          py: { xs: 1, md: 1.5 },
+                          fontSize: { xs: '0.9rem', md: 'button.fontSize' }
+                        }}
                       >
                         {isSubmitting ? 'Sending...' : 'Send Message'}
                       </Button>
@@ -366,7 +378,7 @@ const ContactPage: React.FC = () => {
 
             {/* Contact Information */}
             <Grid item xs={12} md={5}>
-              <Paper elevation={3} sx={{ p: 4, height: '100%', display: 'flex', flexDirection: 'column' }}>
+              <Paper elevation={3} sx={{ p: { xs: 2, md: 4 }, height: '100%', display: 'flex', flexDirection: 'column' }}>
                 <Typography variant="h5" component="h2" gutterBottom align="center">
                   Contact Details
                 </Typography>
@@ -378,7 +390,7 @@ const ContactPage: React.FC = () => {
                         display: 'flex', 
                         alignItems: 'center', 
                         mb: 2,
-                        p: 2,
+                        p: { xs: 1, md: 2 },
                         borderRadius: 2,
                         transition: 'background-color 0.3s',
                         '&:hover': {
@@ -386,11 +398,11 @@ const ContactPage: React.FC = () => {
                         }
                       }}
                     >
-                      <Box sx={{ mr: 2, color: 'primary.main' }}>
+                      <Box sx={{ mr: { xs: 1, md: 2 }, color: 'primary.main' }}>
                         {info.icon}
                       </Box>
                       <Box>
-                        <Typography variant="subtitle1" fontWeight="bold">
+                        <Typography variant="subtitle2" fontWeight="bold" sx={{ fontSize: { xs: '0.9rem', md: 'subtitle1.fontSize' } }}>
                           {info.title}
                         </Typography>
                         <Tooltip title="Click to interact">
@@ -404,6 +416,7 @@ const ContactPage: React.FC = () => {
                             sx={{ 
                               textDecoration: 'none', 
                               color: 'inherit',
+                              fontSize: { xs: '0.75rem', md: 'body2.fontSize' },
                               '&:hover': {
                                 color: 'primary.main'
                               }
@@ -419,7 +432,7 @@ const ContactPage: React.FC = () => {
                 ))}
                 
                 <Box mt="auto" textAlign="center" pt={2}>
-                  <Typography variant="body2" color="textSecondary">
+                  <Typography variant="body2" color="textSecondary" sx={{ fontSize: { xs: '0.7rem', md: 'body2.fontSize' } }}>
                     Our support team is available Monday-Friday, 9am-5pm EST
                   </Typography>
                 </Box>

@@ -69,6 +69,7 @@ export default function ExploreCourses() {
           price: 99.99,
           category: 'Programming',
           lastUpdated: new Date('2024-01-01'),
+          topics: ['Generics', 'Advanced Types', 'Design Patterns']
         },
         {
           id: '2',
@@ -83,8 +84,113 @@ export default function ExploreCourses() {
           price: 79.99,
           category: 'Web Development',
           lastUpdated: new Date('2024-02-01'),
+          topics: ['Hooks', 'State Management', 'Performance Optimization']
         },
-        // Add more mock courses as needed
+        {
+          id: '3',
+          title: 'Machine Learning with Python',
+          description: 'Comprehensive introduction to machine learning algorithms and techniques',
+          instructor: 'Dr. Alex Rodriguez',
+          duration: '16 weeks',
+          level: 'Advanced',
+          rating: 4.7,
+          enrolledStudents: 1800,
+          thumbnail: '/course-ml.jpg',
+          price: 129.99,
+          category: 'Data Science',
+          lastUpdated: new Date('2024-03-15'),
+          topics: ['Neural Networks', 'Deep Learning', 'Data Preprocessing']
+        },
+        {
+          id: '4',
+          title: 'UX/UI Design Fundamentals',
+          description: 'Learn the principles of user experience and interface design',
+          instructor: 'Emily Chen',
+          duration: '8 weeks',
+          level: 'Beginner',
+          rating: 4.6,
+          enrolledStudents: 1500,
+          thumbnail: '/course-uxui.jpg',
+          price: 69.99,
+          category: 'Design',
+          lastUpdated: new Date('2024-02-15'),
+          topics: ['Wireframing', 'Prototyping', 'User Research']
+        },
+        {
+          id: '5',
+          title: 'Digital Marketing Masterclass',
+          description: 'Comprehensive strategy for modern digital marketing techniques',
+          instructor: 'Michael Johnson',
+          duration: '12 weeks',
+          level: 'Intermediate',
+          rating: 4.5,
+          enrolledStudents: 2100,
+          thumbnail: '/course-marketing.jpg',
+          price: 89.99,
+          category: 'Marketing',
+          lastUpdated: new Date('2024-04-01'),
+          topics: ['Social Media Marketing', 'SEO', 'Content Strategy']
+        },
+        {
+          id: '6',
+          title: 'Blockchain and Cryptocurrency Fundamentals',
+          description: 'Deep dive into blockchain technology and cryptocurrency ecosystems',
+          instructor: 'Sarah Williams',
+          duration: '10 weeks',
+          level: 'Advanced',
+          rating: 4.7,
+          enrolledStudents: 1600,
+          thumbnail: '/course-blockchain.jpg',
+          price: 109.99,
+          category: 'Programming',
+          lastUpdated: new Date('2024-03-01'),
+          topics: ['Smart Contracts', 'Ethereum', 'Decentralized Finance']
+        },
+        {
+          id: '7',
+          title: 'Python for Data Analysis',
+          description: 'Learn data manipulation, visualization, and analysis with Python',
+          instructor: 'David Kim',
+          duration: '9 weeks',
+          level: 'Intermediate',
+          rating: 4.8,
+          enrolledStudents: 2200,
+          thumbnail: '/course-python-data.jpg',
+          price: 74.99,
+          category: 'Data Science',
+          lastUpdated: new Date('2024-02-20'),
+          topics: ['Pandas', 'NumPy', 'Matplotlib']
+        },
+        {
+          id: '8',
+          title: 'Cloud Computing with AWS',
+          description: 'Comprehensive guide to Amazon Web Services and cloud infrastructure',
+          instructor: 'Robert Garcia',
+          duration: '14 weeks',
+          level: 'Advanced',
+          rating: 4.9,
+          enrolledStudents: 1900,
+          thumbnail: '/course-aws.jpg',
+          price: 119.99,
+          category: 'Programming',
+          lastUpdated: new Date('2024-04-10'),
+          topics: ['EC2', 'S3', 'Lambda', 'CloudFormation']
+        },
+        {
+          id: '9',
+          title: 'Business Strategy and Leadership',
+          description: 'Develop critical leadership and strategic thinking skills',
+          instructor: 'Amanda Roberts',
+          duration: '8 weeks',
+          level: 'Intermediate',
+          rating: 4.6,
+          enrolledStudents: 1700,
+          thumbnail: '/course-business.jpg',
+          price: 84.99,
+          category: 'Business',
+          lastUpdated: new Date('2024-03-10'),
+          topics: ['Strategic Planning', 'Team Management', 'Innovation']
+        }
       ];
 
       setCourses(mockCourses);

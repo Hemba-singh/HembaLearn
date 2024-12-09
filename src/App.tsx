@@ -17,6 +17,8 @@ import BlogPage from './pages/BlogPage.tsx';
 import CareerPage from './pages/CareerPage.tsx';
 import TermsOfService from './components/TermsOfService.tsx';
 import PrivacyPolicy from './components/PrivacyPolicy.tsx';
+import FAQPage from './pages/FAQPage.tsx';
+import { useAuthStore } from './store/useAuthStore';
 
 const AppLayout = () => (
   <div className="App min-h-screen flex flex-col">
@@ -38,6 +40,7 @@ const AppLayout = () => (
         <Route path="/careers" element={<CareerPage />} />
         <Route path="/terms" element={<TermsOfService />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/faq" element={<FAQPage />} />
       </Routes>
     </main>
     <Footer />
@@ -45,11 +48,19 @@ const AppLayout = () => (
 );
 
 function App() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  const { user, signOut } = useAuthStore(); // Use the Zustand store
+
   return (
     <Router>
       <AuthProvider>
         <AppLayout />
-        <MobileMenu />
+        <MobileMenu 
+          isOpen={isMobileMenuOpen} 
+          onClose={() => setIsMobileMenuOpen(false)}
+          user={user}
+          onSignOut={signOut}
+        />
       </AuthProvider>
     </Router>
   );

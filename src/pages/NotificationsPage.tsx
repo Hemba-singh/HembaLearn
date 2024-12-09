@@ -101,39 +101,33 @@ function NotificationsPage() {
     <>
       <Header />
       <div className="w-full">
-        <div className="max-w-4xl mx-auto px-4 py-8">
-          <div className="flex items-center justify-between mb-8">
-            <div className="flex items-center gap-4">
-              <Link 
-                to="/" 
-                className="flex items-center text-gray-600 hover:text-blue-600 transition-colors"
-              >
-                <ArrowLeft className="w-5 h-5 mr-2" />
-                Back
-              </Link>
+        <div className="max-w-4xl mx-auto px-4 py-4 md:py-8">
+          {/* Header Section */}
+          <div className="flex flex-col md:flex-row items-center justify-between mb-6 md:mb-8">
+            <div className="flex items-center gap-4 mb-4 md:mb-0 w-full">
               <div className="flex items-center">
-                <Bell className="w-6 h-6 text-blue-600 mr-2" />
-                <h1 className="text-2xl font-bold">Notifications</h1>
+                <Bell className="w-5 md:w-6 h-5 md:h-6 text-blue-600 mr-2" />
+                <h1 className="text-xl md:text-2xl font-bold">Notifications</h1>
               </div>
             </div>
             
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center justify-between md:justify-end w-full space-x-4">
               <button 
                 onClick={() => setNotifications([])}
-                className="text-gray-600 hover:text-red-600 transition-colors text-sm"
+                className="text-gray-600 hover:text-red-600 transition-colors text-xs md:text-sm"
               >
                 Clear All
               </button>
-              <span className="text-sm text-gray-500">
+              <span className="text-xs md:text-sm text-gray-500">
                 {filteredNotifications.length} notification{filteredNotifications.length !== 1 ? 's' : ''}
               </span>
             </div>
           </div>
 
           {/* Filter Controls */}
-          <div className="mb-6 flex flex-wrap gap-4">
+          <div className="mb-6 flex flex-col md:flex-row gap-4">
             <select 
-              className="px-4 py-2 rounded-lg border border-gray-200"
+              className="w-full md:w-auto px-3 py-2 text-sm rounded-lg border border-gray-200"
               value={filter}
               onChange={(e) => setFilter(e.target.value as typeof filter)}
             >
@@ -143,7 +137,7 @@ function NotificationsPage() {
             </select>
 
             <select 
-              className="px-4 py-2 rounded-lg border border-gray-200"
+              className="w-full md:w-auto px-3 py-2 text-sm rounded-lg border border-gray-200"
               value={priorityFilter}
               onChange={(e) => setPriorityFilter(e.target.value as typeof priorityFilter)}
             >
@@ -157,10 +151,10 @@ function NotificationsPage() {
           {/* Notifications List */}
           <AnimatePresence>
             {Object.entries(groupedNotifications).length > 0 ? (
-              <div className="space-y-8">
+              <div className="space-y-6 md:space-y-8">
                 {Object.entries(groupedNotifications).map(([date, notifications]) => (
                   <div key={date} className="space-y-4">
-                    <h3 className="text-lg font-semibold text-gray-700">
+                    <h3 className="text-base md:text-lg font-semibold text-gray-700">
                       {format(new Date(date), 'MMMM d, yyyy')}
                     </h3>
                     <div className="space-y-4">
@@ -170,7 +164,7 @@ function NotificationsPage() {
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -20 }}
-                          className={`p-4 rounded-lg shadow-sm border ${
+                          className={`p-3 md:p-4 rounded-lg shadow-sm border ${
                             notification.read ? 'bg-white' : 'bg-blue-50'
                           } ${
                             notification.priority === 'high' ? 'border-red-200' :
@@ -178,33 +172,33 @@ function NotificationsPage() {
                             'border-gray-200'
                           }`}
                         >
-                          <div className="flex justify-between items-start">
-                            <div className="flex-1">
-                              <h4 className="text-lg font-medium mb-1">{notification.title}</h4>
-                              <p className="text-gray-600">{notification.message}</p>
-                              <div className="mt-2 flex items-center gap-4 text-sm text-gray-500">
+                          <div className="flex flex-col md:flex-row justify-between items-start">
+                            <div className="flex-1 mb-3 md:mb-0">
+                              <h4 className="text-base md:text-lg font-medium mb-1">{notification.title}</h4>
+                              <p className="text-sm md:text-base text-gray-600">{notification.message}</p>
+                              <div className="mt-2 flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4 text-xs md:text-sm text-gray-500">
                                 <span className="flex items-center gap-1">
-                                  <Clock className="w-4 h-4" />
+                                  <Clock className="w-3 md:w-4 h-3 md:h-4" />
                                   {format(notification.timestamp, 'h:mm a')}
                                 </span>
                                 {notification.priority !== 'low' && (
                                   <span className={`flex items-center gap-1 ${
                                     notification.priority === 'high' ? 'text-red-500' : 'text-yellow-500'
                                   }`}>
-                                    <AlertCircle className="w-4 h-4" />
+                                    <AlertCircle className="w-3 md:w-4 h-3 md:h-4" />
                                     {notification.priority} priority
                                   </span>
                                 )}
                               </div>
                             </div>
-                            <div className="flex gap-2">
+                            <div className="flex gap-2 w-full md:w-auto justify-end">
                               {!notification.read && (
                                 <button
                                   onClick={() => markAsRead(notification.id)}
                                   className="p-2 text-blue-600 hover:bg-blue-50 rounded-full"
                                   title="Mark as read"
                                 >
-                                  <CheckCircle className="w-5 h-5" />
+                                  <CheckCircle className="w-4 md:w-5 h-4 md:h-5" />
                                 </button>
                               )}
                               <button
@@ -212,7 +206,7 @@ function NotificationsPage() {
                                 className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-full"
                                 title="Delete notification"
                               >
-                                <X className="w-5 h-5" />
+                                <X className="w-4 md:w-5 h-4 md:h-5" />
                               </button>
                             </div>
                           </div>
@@ -226,11 +220,11 @@ function NotificationsPage() {
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="text-center py-12 bg-white rounded-lg"
+                className="text-center py-8 md:py-12 bg-white rounded-lg"
               >
-                <Bell className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-lg font-medium text-gray-900 mb-2">No notifications</h3>
-                <p className="text-gray-500">You're all caught up!</p>
+                <Bell className="w-8 md:w-12 h-8 md:h-12 text-gray-400 mx-auto mb-4" />
+                <h3 className="text-base md:text-lg font-medium text-gray-900 mb-2">No notifications</h3>
+                <p className="text-xs md:text-sm text-gray-500">You're all caught up!</p>
               </motion.div>
             )}
           </AnimatePresence>

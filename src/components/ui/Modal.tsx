@@ -5,16 +5,21 @@ import { X } from 'lucide-react';
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
-  title: string;
   children: React.ReactNode;
   className?: string;
+  title?: string;
 }
 
-export function Modal({ isOpen, onClose, title, children, className }: ModalProps) {
-  // Close modal on escape key press
+export function Modal({ 
+  isOpen, 
+  onClose, 
+  children, 
+  className = '', 
+  title 
+}: ModalProps) {
   useEffect(() => {
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
         onClose();
       }
     };
@@ -46,22 +51,28 @@ export function Modal({ isOpen, onClose, title, children, className }: ModalProp
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className={`fixed inset-0 flex items-center justify-center w-half max-w-md h-screen/1 max-h-[100vh] bg-white rounded-lg shadow-xl z-50 overflow-hidden mx-4 sm:mx-auto md:max-w-lg lg:max-w-2xl xl:max-w-3xl ${className}`}
+            className={`fixed inset-0 flex items-center justify-center w-full h-full z-50 p-4`}
           >
-            {/* Header */}
-            <div className="flex items-center justify-between p-4 border-b">
-              <h2 className="text-xl font-semibold text-gray-800 flex-grow text-center">{title}</h2>
-              <button
-                onClick={onClose}
-                className="absolute right-4 top-4 p-2 hover:bg-gray-100 rounded-full transition-colors"
-              >
-                <X className="w-5 h-5 text-gray-500" />
-              </button>
-            </div>
-            
-            {/* Content */}
-            <div className="p-6 overflow-y-auto">
-              {children}
+            <div className="w-full max-w-xs sm:max-w-sm bg-white rounded-lg shadow-xl overflow-hidden relative">
+              {/* Header */}
+              <div className="flex items-center justify-between p-4 border-b">
+                {title && (
+                  <h2 className="text-lg font-semibold text-gray-900">
+                    {title}
+                  </h2>
+                )}
+                <button 
+                  onClick={onClose} 
+                  className="ml-auto text-gray-500 hover:text-gray-700 focus:outline-none"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Content */}
+              <div className="p-4">
+                {children}
+              </div>
             </div>
           </motion.div>
         </>
